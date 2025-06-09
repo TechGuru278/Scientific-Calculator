@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Vault - Calculator Pro</title>
+    <link rel="stylesheet" href="vault-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="vault-container">
+        <!-- Back Button -->
+        <button class="back-btn" id="backBtn" title="Back to Calculator">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <!-- Lock Vault Button -->
+        <button class="lock-btn" id="lockBtn" title="Lock Vault">
+            <i class="fas fa-lock"></i>
+        </button>
+
+        <div class="vault-content">
+            <div class="vault-header">
+                <div class="vault-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>Secure Vault</h1>
+                </div>
+                <div class="vault-controls">
+                    <input type="file" id="fileInput" multiple accept="*/*" webkitdirectory="" style="display: none; position: absolute; left: -9999px; top: -9999px;">
+                    <button id="addFilesBtn" class="add-files-btn" type="button">
+                        <i class="fas fa-plus"></i>
+                        Add Files
+                    </button>
+                </div>
+            </div>
+
+            <div class="vault-body">
+                <div class="files-grid" id="filesGrid">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Your secure vault is empty</h3>
+                        <p>Add files to store them securely!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-cog"></i> Vault Settings</h3>
+                    <button id="closeSettings" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-item">
+                        <h4>Change Password</h4>
+                        <input type="password" id="currentPassword" placeholder="Current password" maxlength="50">
+                        <input type="password" id="newPassword" placeholder="New password" maxlength="50">
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password" maxlength="50">
+                        <button id="changePasswordBtn" class="change-password-btn">Change Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Button (Hidden) -->
+        <button class="settings-btn" id="settingsBtn" style="display: none;" title="Settings">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+
+    <!-- Floating Animation Elements -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+
+    <script src="vault-script.js"></script>
+</body>
+</html>

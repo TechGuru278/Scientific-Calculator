@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Menu Button -->
+        <button class="menu-btn" id="menuBtn" title="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Menu Modal -->
+        <div id="menuModal" class="menu-modal hidden">
+            <div class="menu-content">
+                <div class="menu-header">
+                    <h3><i class="fas fa-cog"></i> Menu</h3>
+                    <button id="closeMenu" class="close-btn">&times;</button>
+                </div>
+                <div class="menu-body">
+                    <div class="menu-section">
+                        <h4><i class="fas fa-user"></i> About Author</h4>
+                        <div class="author-info">
+                            <p>This powerful scientific calculator was built by <strong><span id="authorName" class="author-name-secret">Shreyas</span></strong>, a passionate developer specializing in creating innovative web applications.</p>
+                            <div class="author-links">
+                                <a href="https://shreyu-07.github.io/Portfolio-shreyas/" target="_blank" class="author-link">
+                                    <i class="fas fa-globe"></i> Visit Portfolio
+                                </a>
+                                <a href="https://github.com/shreyu-07" target="_blank" class="author-link">
+                                    <i class="fab fa-github"></i> GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h4><i class="fas fa-info-circle"></i> About Calculator</h4>
+                        <div class="calculator-info">
+                            <p>Scientific Calculator Pro is a comprehensive tool designed for engineers, students, and professionals.</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Advanced mathematical functions</li>
+                                <li><i class="fas fa-check"></i> Note-taking capabilities</li>
+                                <li><i class="fas fa-check"></i> Calculation history tracking</li>
+                                <li><i class="fas fa-check"></i> Mobile-responsive design</li>
+                                <li><i class="fas fa-check"></i> Offline functionality</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h4><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h4>
+                        <div class="shortcuts-info">
+                            <div class="shortcut-item">
+                                <span class="shortcut-key">0-9</span>
+                                <span class="shortcut-desc">Number input</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-key">+, -, *, /</span>
+                                <span class="shortcut-desc">Basic operations</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-key">Enter</span>
+                                <span class="shortcut-desc">Calculate result</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-key">Escape</span>
+                                <span class="shortcut-desc">Clear calculator</span>
+                            </div>
+                            <div class="shortcut-item">
+                                <span class="shortcut-key">Backspace</span>
+                                <span class="shortcut-desc">Delete last digit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h4><i class="fas fa-shield-alt"></i> Security</h4>
+                        <div class="security-menu-info">
+                            <p>Access secure storage and privacy features.</p>
+                            <button id="secureVaultBtn" class="secure-vault-btn">
+                                <i class="fas fa-lock"></i> Secure Vault
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Calculator Section -->
+        <div class="calculator-section">
+            <div class="calculator">
+                <div class="calculator-header">
+                    <h1><i class="fas fa-calculator"></i> Scientific Calculator Pro</h1>
+                    <div class="mode-toggle">
+                        <button id="calcMode" class="mode-btn active">Calculator</button>
+                        <button id="historyMode" class="mode-btn">History</button>
+                        <button id="notesMode" class="mode-btn">Notes</button>
+                    </div>
+                </div>
+
+                <!-- Calculator Interface -->
+                <div id="calculatorInterface" class="calculator-interface">
+                    <div class="display-section">
+                        <div class="history-display" id="historyDisplay"></div>
+                        <div class="main-display" id="mainDisplay">0</div>
+                        <div class="memory-indicator" id="memoryIndicator">M</div>
+                    </div>
+
+                    <div class="buttons-grid">
+                        <!-- Memory and Clear Row -->
+                        <button class="btn memory-btn" data-action="mc">MC</button>
+                        <button class="btn memory-btn" data-action="mr">MR</button>
+                        <button class="btn memory-btn" data-action="m+">M+</button>
+                        <button class="btn memory-btn" data-action="m-">M-</button>
+                        <button class="btn clear-btn" data-action="clear">C</button>
+                        <button class="btn clear-btn" data-action="backspace"><i class="fas fa-backspace"></i></button>
+
+                        <!-- Scientific Functions Row 1 -->
+                        <button class="btn function-btn" data-action="sin">sin</button>
+                        <button class="btn function-btn" data-action="cos">cos</button>
+                        <button class="btn function-btn" data-action="tan">tan</button>
+                        <button class="btn function-btn" data-action="log">log</button>
+                        <button class="btn function-btn" data-action="ln">ln</button>
+                        <button class="btn function-btn" data-action="factorial">x!</button>
+
+                        <!-- Scientific Functions Row 2 -->
+                        <button class="btn function-btn" data-action="asin">asin</button>
+                        <button class="btn function-btn" data-action="acos">acos</button>
+                        <button class="btn function-btn" data-action="atan">atan</button>
+                        <button class="btn function-btn" data-action="pow10">10^x</button>
+                        <button class="btn function-btn" data-action="exp">e^x</button>
+                        <button class="btn function-btn" data-action="pi">π</button>
+
+                        <!-- Advanced Scientific Functions Row 3 -->
+                        <button class="btn function-btn" data-action="sinh">sinh</button>
+                        <button class="btn function-btn" data-action="cosh">cosh</button>
+                        <button class="btn function-btn" data-action="tanh">tanh</button>
+                        <button class="btn function-btn" data-action="e">e</button>
+                        <button class="btn function-btn" data-action="log2">log₂</button>
+                        <button class="btn function-btn" data-action="random">rand</button>
+
+                        <!-- Power and Root Functions -->
+                        <button class="btn function-btn" data-action="square">x²</button>
+                        <button class="btn function-btn" data-action="cube">x³</button>
+                        <button class="btn function-btn" data-action="power">x^y</button>
+                        <button class="btn function-btn" data-action="sqrt">√</button>
+                        <button class="btn function-btn" data-action="cbrt">∛</button>
+                        <button class="btn function-btn" data-action="percent">%</button>
+
+                        <!-- Engineering Functions -->
+                        <button class="btn function-btn" data-action="abs">|x|</button>
+                        <button class="btn function-btn" data-action="reciprocal">1/x</button>
+                        <button class="btn function-btn" data-action="mod">mod</button>
+                        <button class="btn function-btn" data-action="floor">⌊x⌋</button>
+                        <button class="btn function-btn" data-action="ceil">⌈x⌉</button>
+                        <button class="btn function-btn" data-action="round">round</button>
+
+                        <!-- Numbers and Basic Operations -->
+                        <button class="btn operator-btn" data-action="(">(</button>
+                        <button class="btn operator-btn" data-action=")">)</button>
+                        <button class="btn operator-btn" data-action="/">÷</button>
+                        <button class="btn operator-btn" data-action="*">×</button>
+
+                        <button class="btn number-btn" data-number="7">7</button>
+                        <button class="btn number-btn" data-number="8">8</button>
+                        <button class="btn number-btn" data-number="9">9</button>
+                        <button class="btn operator-btn" data-action="-">-</button>
+
+                        <button class="btn number-btn" data-number="4">4</button>
+                        <button class="btn number-btn" data-number="5">5</button>
+                        <button class="btn number-btn" data-number="6">6</button>
+                        <button class="btn operator-btn" data-action="+">+</button>
+
+                        <button class="btn number-btn" data-number="1">1</button>
+                        <button class="btn number-btn" data-number="2">2</button>
+                        <button class="btn number-btn" data-number="3">3</button>
+                        <button class="btn equals-btn" data-action="=" rowspan="2">=</button>
+
+                        <button class="btn number-btn zero-btn" data-number="0">0</button>
+                        <button class="btn number-btn" data-action=".">.</button>
+                        <button class="btn function-btn" data-action="negate">±</button>
+                    </div>
+                </div>
+
+                <!-- History Interface -->
+                <div id="historyInterface" class="history-interface hidden">
+                    <div class="history-header">
+                        <h2><i class="fas fa-history"></i> Calculation History</h2>
+                        <button id="clearHistoryBtn" class="clear-history-btn">
+                            <i class="fas fa-trash-alt"></i> Clear History
+                        </button>
+                    </div>
+                    
+                    <div class="history-container" id="historyContainer">
+                        <div class="no-history" id="noHistory">
+                            <i class="fas fa-calculator"></i>
+                            <p>No calculations yet. Perform some calculations to see your history!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes Interface -->
+                <div id="notesInterface" class="notes-interface hidden">
+                    <div class="notes-header">
+                        <h2><i class="fas fa-sticky-note"></i> Notes</h2>
+                        <button id="addNoteBtn" class="add-note-btn">
+                            <i class="fas fa-plus"></i> Add Note
+                        </button>
+                    </div>
+                    
+                    <div class="notes-container" id="notesContainer">
+                        <div class="no-notes" id="noNotes">
+                            <i class="fas fa-clipboard"></i>
+                            <p>No notes yet. Click "Add Note" to create your first note!</p>
+                        </div>
+                    </div>
+
+                    <!-- Note Editor Modal -->
+                    <div id="noteModal" class="modal hidden">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="modalTitle">Add New Note</h3>
+                                <button id="closeModal" class="close-btn">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" id="noteTitle" placeholder="Enter note title..." maxlength="50">
+                                <textarea id="noteContent" placeholder="Enter your note content..." rows="10"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="saveNote" class="save-btn">Save Note</button>
+                                <button id="cancelNote" class="cancel-btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Vault Password Modal -->
+        <div id="vaultPasswordModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-key"></i> Enter Vault Password</h3>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="vaultPassword" placeholder="Enter password to access vault..." maxlength="50">
+                    <div class="password-hint">
+                        <p><i class="fas fa-info-circle"></i> Enter your vault password or master password</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="unlockVault" class="unlock-btn">Unlock Vault</button>
+                    <button id="cancelVaultAccess" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Password Modal -->
+        <div id="changePasswordModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-key"></i> Change Vault Password</h3>
+                    <button id="closeChangePassword" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="currentPassword" placeholder="Enter current password..." maxlength="50">
+                    <input type="password" id="newPassword" placeholder="Enter new password..." maxlength="50">
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password..." maxlength="50">
+                </div>
+                <div class="modal-footer">
+                    <button id="savePasswordChange" class="save-btn">Change Password</button>
+                    <button id="cancelPasswordChange" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Animation Elements -->
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
